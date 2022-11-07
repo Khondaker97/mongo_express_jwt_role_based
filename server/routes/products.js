@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("../db/conn");
+const { authenticateToken } = require("../middlewares/authenticate");
 const router = express.Router();
 
 // find all
@@ -20,7 +21,7 @@ router.get("/foods", async (req, res) => {
     const result = await foods.find({}).toArray();
     res.send(result);
   } catch (error) {
-    console.log(error);
+    res.status(404).send("Not Found!");
   }
 });
 // find

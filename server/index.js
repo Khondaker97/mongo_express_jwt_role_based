@@ -6,13 +6,18 @@ const db = require("./db/conn");
 const productRoutes = require("./routes/products");
 const userRoutes = require("./routes/users");
 
+const PORT = process.env.PORT || 5000;
 const app = express();
 //middleware
+// const corsOptions = {
+//   origin: process.env.CLIENT_ADDRESS || `http://localhost:${PORT}`,
+//   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+//   withCredentials: true,
+// };
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const PORT = process.env.PORT || 5000;
 //testing
 app.get("/", (req, res) => {
   res.send("HEY, WHO ARE YOU?");
